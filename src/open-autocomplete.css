@@ -1,0 +1,22 @@
+ul.open-autocomplete {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    background: white;
+    z-index: 99999;
+    border: 1px solid black;
+}
+
+ul.open-autocomplete li {
+    padding: 5px 10px;
+}
+
+ul.open-autocomplete li:hover {
+    background: lightgray;
+    cursor: pointer;
+}
+
+ul.open-autocomplete li.add {
+    font-style: italic;
+}

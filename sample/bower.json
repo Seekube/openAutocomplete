@@ -1,0 +1,13 @@
+{
+  "name": "sample",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Seekube/OpenAutocomplete",
+  "authors": [
+    "Masadow <jimmy.delas@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "angular": "~1.4.8"
+  }
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open Autocomplete AngularJS sample</title>
+
+    <link rel="stylesheet" type="text/css" href="/dist/open-autocomplete.css">
+</head>
+
+<body>
+
+<div ng-app="sample">
+    <div ng-controller="oaCtrl">
+        <input open-autocomplete oa-options="oaOptions" placeholder="Looking for something to eat ?"/>
+
+        <div ng-show="isWarned" class="warning">
+            Be warned, you are adding a new entry
+        </div>
+
+        <div ng-show="isCanceled" class="canceled">
+            Wow, you don't want to use my fancy plugin ?!
+        </div>
+    </div>
+</div>
+
+<script src="/bower_components/angular/angular.min.js"></script>
+<script src="/dist/angular/open-autocomplete.angular.js"></script>
+
+<script>
+    angular.module('sample', ['open-autocomplete']).controller('oaCtrl', function ($scope) {
+        $scope.isWarned = false;
+        $scope.isCanceled = false;
+
+        $scope.oaOptions = {
+            dataSource: '/auto-complete',
+            limit: 5,
+            onAdd: function () {
+                $scope.isWarned = true;
+            },
+            onExist: function () {
+                $scope.isWarned = false;
+            },
+            onCancelInput: function () {
+                $scope.isCanceled = true;
+            },
+            onEditing: function () {
+                $scope.isCanceled = $scope.isWarned = false;
+            }
+        };
+    });
+</script>
+</body>
+
+</html>

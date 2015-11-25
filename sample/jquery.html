@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Open Autocomplete JQuery sample</title>
+        
+        <link rel="stylesheet" type="text/css" href="/dist/open-autocomplete.css">
+    </head>
+
+    <body>
+        
+        <input placeholder="Looking for something to eat ?"/>
+
+        <div class="warning" style="display: none;">
+            Be warned, you are adding a new entry
+        </div>
+
+        <div class="canceled" style="display: none;">
+            Wow, you don't want to use my fancy plugin ?!
+        </div>
+
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="/dist/jquery/open-autocomplete.jquery.js"></script>
+        
+        <script>
+            $(function () {
+                $("input").openAutocomplete({
+                    dataSource: '/auto-complete',
+                    limit: 5,
+                    onAdd: function () {
+                        $(".warning").show();
+                    },
+                    onExist: function () {
+                        $(".warning").hide();
+                    },
+                    onCancelInput: function () {
+                        $(".canceled").show();
+                    },
+                    onEditing: function () {
+                        $(".canceled").hide();
+                        $(".warning").hide();
+                    }
+                });
+            });
+        </script>
+    </body>
+
+</html>

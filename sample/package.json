@@ -1,0 +1,23 @@
+{
+  "name": "open-autocomplete",
+  "version": "1.0.0",
+  "description": "Plugin that let you add editable autocompletion on inputs",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/Seekube/OpenAutocomplete"
+  },
+  "author": "Masadow",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Seekube/OpenAutocomplete/issues"
+  },
+  "homepage": "https://github.com/Seekube/OpenAutocomplete"
+}
