@@ -20,3 +20,15 @@ ul.open-autocomplete li:hover {
 ul.open-autocomplete li.add {
     font-style: italic;
 }
+
+input.open-autocomplete[readonly] {
+    display: none;
+}
+
+input.open-autocomplete + .open-autocomplete.oa-result-container {
+    display: none;
+}
+
+input.open-autocomplete[readonly] + .open-autocomplete.oa-result-container {
+    display: initial;
+}

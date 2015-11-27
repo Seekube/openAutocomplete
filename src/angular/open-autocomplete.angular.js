@@ -31,6 +31,7 @@ angular.module('open-autocomplete', [])
                 scope.settings = openAutocompleteSettings(angular.extend({
                     limit: false,
                     addLabel: 'Add',
+                    editLabel: 'Edit',
                     onSelect: function ($event) {
                         var item = angular.element($event.target);
 
@@ -40,10 +41,15 @@ angular.module('open-autocomplete', [])
                             }
                         } else {
                             element.val(item.html());
+
                             if (scope.settings.onExist) {
                                 scope.settings.onExist(item.html());
                             }
                         }
+
+                        //Set the input as readonly
+                        element.attr('readonly', 'readonly');
+                        scope.result.html(element.val());
 
                         scope.settings.hideAutocomplete();
                     },
@@ -99,12 +105,27 @@ angular.module('open-autocomplete', [])
                     }
                 }, scope.oaOptions));
 
+                scope.result = angular.element('<span class="oa-result"></span>');
+                scope.resultEditButton = angular.element('<button class="oa-edit">'+ scope.settings.editLabel +'</button>');
+                scope.resultContainer = angular.element('<span class="open-autocomplete oa-result-container"> </span>');
+
+                scope.resultContainer.prepend(scope.result).append(scope.resultEditButton);
+
+                element.after(scope.resultContainer).addClass('open-autocomplete');
+
                 element.on('input focus', function () {
-                    if (scope.settings.onEditing) {
-                        scope.settings.onEditing();
+                    if (!element.attr('readonly')) {
+                        if (scope.settings.onEditing) {
+                            scope.settings.onEditing();
+                        }
+                        scope.results = []; //Reset results before send
+                        scope.settings.dataSource(element.val());
                     }
-                    scope.results = []; //Reset results before send
-                    scope.settings.dataSource(element.val());
+                });
+
+                scope.resultEditButton.on('click', function () {
+                    element.attr('readonly', '')[0].focus();
+                    return false;
                 });
 
                 angular.element(document).on('click', function (event) {

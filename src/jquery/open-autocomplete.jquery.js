@@ -6,8 +6,15 @@
             results: [],
             input: $(this),
             el: $('<ul class="open-autocomplete"></ul>'),
+            resultContainer: $('<span class="open-autocomplete oa-result-container"><span class="oa-result"></span> <button class="oa-edit"></button></span>'),
             init: function () {
                 plugin.el.on('click', 'li', settings.onSelect);
+
+                plugin.resultContainer.find('.oa-edit').html(settings.editLabel).on('click', function () {
+                    console.log('Hello');
+                    plugin.input.removeAttr('readonly').focus();
+                    return false;
+                });
 
                 plugin.input.on('input focus', function () {
                     if (settings.onEditing) {
@@ -15,7 +22,7 @@
                     }
                     this.results = []; //Reset results before send
                     settings.dataSource(plugin.input.val(), settings.limit);
-                });
+                }).addClass('open-autocomplete').after(plugin.resultContainer);
 
                 $(document).click(function (event) {
                     if (plugin.el.is(':visible') && event.target != plugin.input.get(0) && plugin.el.has(event.target).length == 0) {
@@ -41,7 +48,11 @@
                         settings.onExist(item.html());
                     }
                 }
-                
+
+                //Set the input readonly
+                plugin.resultContainer.find('.oa-result').html(plugin.input.val());
+                plugin.input.attr('readonly', 'readonly');
+
                 plugin.hideAutocomplete();
             },
             parseResult: function (res) {
@@ -97,7 +108,8 @@
             onSelect: plugin.onSelect,
             onError: plugin.onError,
             limit: false,
-            addLabel: 'Add'
+            addLabel: 'Add',
+            editLabel: 'Edit'
         }, options );
         
         //Check for required option and init settings
