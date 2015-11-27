@@ -1,0 +1,23 @@
+{
+  "name": "open-autocomplete",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Seekube/OpenAutocomplete",
+  "authors": [
+    "Masadow <jimmy.delas@gmail.com>"
+  ],
+  "description": "A tiny plugin that allows you to create editable auto-completion",
+  "keywords": [
+    "autocomplete",
+    "angularjs",
+    "jquery",
+    "auto-complete"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
