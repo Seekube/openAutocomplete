@@ -35,7 +35,7 @@ angular.module('open-autocomplete', [])
                     onSelect: function ($event) {
                         var item = angular.element($event.target);
 
-                        if (item.hasClass('add')) {
+                        if (item.hasClass('oa-add')) {
                             if (scope.settings.onAdd) {
                                 scope.settings.onAdd(item.html());
                             }
@@ -73,7 +73,7 @@ angular.module('open-autocomplete', [])
                             });
 
                             if (!exactMatch && element.val()) {
-                                scope.list.append('<li ng-click="settings.onSelect($event)" class="add">' + scope.settings.addLabel + ' ' + element.val() + '</li>');
+                                scope.list.append('<li ng-click="settings.onSelect($event)" class="oa-add">' + scope.settings.addLabel + ' ' + element.val() + '</li>');
                             }
 
                             angular.element(document.body).append($compile(scope.list)(scope));

@@ -11,7 +11,6 @@
                 plugin.el.on('click', 'li', settings.onSelect);
 
                 plugin.resultContainer.find('.oa-edit').html(settings.editLabel).on('click', function () {
-                    console.log('Hello');
                     plugin.input.removeAttr('readonly').focus();
                     return false;
                 });
@@ -38,7 +37,7 @@
             onSelect: function () {
                 var item = $(this);
                 
-                if (item.hasClass('add')) {
+                if (item.hasClass('oa-add')) {
                     if (settings.onAdd) {
                         settings.onAdd(item.html());
                     }
@@ -75,7 +74,7 @@
                     });
 
                     if (!exactMatch && plugin.input.val()) {
-                        list.append('<li class="add">' + settings.addLabel + ' ' + plugin.input.val() + '</li>');
+                        list.append('<li class="oa-add">' + settings.addLabel + ' ' + plugin.input.val() + '</li>');
                     }
 
                     $('body').append(list);

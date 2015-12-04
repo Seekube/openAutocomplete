@@ -17,7 +17,7 @@ ul.open-autocomplete li:hover {
     cursor: pointer;
 }
 
-ul.open-autocomplete li.add {
+ul.open-autocomplete li.oa-add {
     font-style: italic;
 }
 
