@@ -40,7 +40,7 @@ angular.module('open-autocomplete', [])
                                 scope.settings.onAdd(item.html());
                             }
                         } else {
-                            element.val(item.html());
+                            element.val(item.html()).trigger('change');
 
                             if (scope.settings.onExist) {
                                 scope.settings.onExist(item.html());
