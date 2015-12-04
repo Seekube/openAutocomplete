@@ -121,6 +121,10 @@ angular.module('open-autocomplete', [])
                     }
                 });
 
+                if (scope.settings.onFocus) {
+                    element.on('focus', scope.settings.onFocus);
+                }
+
                 scope.resultEditButton.on('click', function () {
                     element.removeAttr('readonly')[0].focus();
                     return false;
