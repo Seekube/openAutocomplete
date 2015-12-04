@@ -124,7 +124,7 @@ angular.module('open-autocomplete', [])
                 });
 
                 scope.resultEditButton.on('click', function () {
-                    element.attr('readonly', '')[0].focus();
+                    element.removeAttr('readonly')[0].focus();
                     return false;
                 });
 
