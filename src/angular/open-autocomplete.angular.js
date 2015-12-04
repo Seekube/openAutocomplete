@@ -116,9 +116,6 @@ angular.module('open-autocomplete', [])
 
                 element.on('input focus', function () {
                     if (!element.attr('readonly')) {
-                        if (scope.settings.onEditing) {
-                            scope.settings.onEditing();
-                        }
                         scope.results = []; //Reset results before send
                         scope.settings.dataSource(element.val());
                     }
@@ -135,6 +132,21 @@ angular.module('open-autocomplete', [])
                         if (scope.settings.onCancelInput) {
                             scope.$apply(scope.settings.onCancelInput);
                         }
+                    }
+                });
+
+                scope.$watch(function () {
+                    return element.val();
+                }, function () {
+                    if (!element.is(':focus')) {
+                        if (element.val().length > 0) {
+                            element.attr('readonly', 'readonly');
+                        } else {
+                            element.removeAttr('readonly');
+                        }
+                    }
+                    if (scope.settings.onEditing) {
+                        scope.settings.onEditing();
                     }
                 });
             }
