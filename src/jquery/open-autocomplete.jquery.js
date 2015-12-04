@@ -92,8 +92,8 @@
             },
             positionPopup: function () {
                 plugin.el.css({
-                    top: plugin.input.offset().top + plugin.input.outerHeight(),
-                    left: plugin.input.offset().left
+                    top: plugin.input.position().top + plugin.input.outerHeight(),
+                    left: plugin.input.position().left
                 }).outerWidth(plugin.input.outerWidth());
             }
         });
