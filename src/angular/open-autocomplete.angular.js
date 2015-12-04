@@ -64,9 +64,10 @@ angular.module('open-autocomplete', [])
                             scope.list.empty();
 
                             angular.forEach(scope.results, function (item, idx) {
-                                scope.list.append('<li ng-click="settings.onSelect($event)">' + item + '</li>');
+                                var listItem = angular.element('<li ng-click="settings.onSelect($event)">' + item + '</li>')
+                                scope.list.append(listItem);
 
-                                if (item == element.val()) {
+                                if (listItem.html() == element.val()) {
                                     exactMatch = true;
                                 }
                             });
