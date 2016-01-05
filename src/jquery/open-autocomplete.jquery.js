@@ -77,7 +77,7 @@
                         list.append('<li class="oa-add">' + settings.addLabel + ' ' + plugin.input.val() + '</li>');
                     }
 
-                    $('body').append(list);
+                    settings.parent.append(list);
                     
                     settings.positionPopup();
                 } else {
@@ -108,7 +108,8 @@
             onError: plugin.onError,
             limit: false,
             addLabel: 'Add',
-            editLabel: 'Edit'
+            editLabel: 'Edit',
+            parent: $('body')
         }, options );
         
         //Check for required option and init settings
