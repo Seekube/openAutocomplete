@@ -5,7 +5,7 @@ ul.open-autocomplete {
     position: absolute;
     background: white;
     z-index: 99999;
-    border: 1px solid black;
+    border: 1px solid #c6c6c6;
 }
 
 ul.open-autocomplete li {
