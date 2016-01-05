@@ -32,7 +32,11 @@
                     }
                 });
 
-
+                //If input is already filled, set it as readonly
+                if (plugin.input.val() && plugin.input.val().length > 0) {
+                    plugin.resultContainer.find('.oa-result').html(plugin.input.val());
+                    plugin.input.attr('readonly', 'readonly');
+                }
             },
             onSelect: function () {
                 var item = $(this);
