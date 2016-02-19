@@ -12,7 +12,7 @@ angular.module('open-autocomplete', [])
                             input: val,
                             limit: this.limit
                         }
-                    }).then(this.parseResult, this.onError).finally(this.showAutocomplete);
+                    }).then(this.parseResult, this.onError)['finally'](this.showAutocomplete); //Ugly but prevents a bug from YUI compressor
                 }
             }
             return settings;
