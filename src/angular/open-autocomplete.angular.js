@@ -110,7 +110,7 @@ angular.module('open-autocomplete', [])
                 }, scope.oaOptions));
 
                 scope.result = angular.element('<span class="oa-result"></span>');
-                scope.resultEditButton = angular.element('<button class="oa-edit">'+ scope.settings.editLabel +'</button>');
+                scope.resultEditButton = angular.element('<button type="button" class="oa-edit">'+ scope.settings.editLabel +'</button>');
                 scope.resultContainer = angular.element('<span class="open-autocomplete oa-result-container"> </span>');
 
                 scope.resultContainer.prepend(scope.result).append(scope.resultEditButton);
