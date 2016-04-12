@@ -25,6 +25,8 @@ angular.module('open-autocomplete', [])
                 oaOptions: '='
             },
             link: function (scope, element, attrs) {
+                element.isFocus = false;
+                
                 scope.list = angular.element('<ul class="open-autocomplete"></ul>');
                 scope.results = [];
                 scope.visible = false;
@@ -40,7 +42,8 @@ angular.module('open-autocomplete', [])
                                 scope.settings.onAdd(item.html());
                             }
                         } else {
-                            element.val(item.html()).trigger('change');
+                            element.val(item.html());
+                            element.triggerHandler('change');
 
                             if (scope.settings.onExist) {
                                 scope.settings.onExist(item.html());
@@ -48,7 +51,7 @@ angular.module('open-autocomplete', [])
                         }
 
                         //Set the input as readonly
-                        element.attr('readonly', 'readonly');
+                        element.attr('readonly', true);
                         scope.result.html(element.val());
 
                         scope.settings.hideAutocomplete();
@@ -114,6 +117,14 @@ angular.module('open-autocomplete', [])
 
                 element.after(scope.resultContainer).addClass('open-autocomplete');
 
+                element.on('focus', function () {
+                    element.isFocus = true;
+                });
+
+                element.on('blur', function () {
+                    element.isFocus = false;
+                });
+
                 element.on('input focus', function () {
                     if (!element.attr('readonly')) {
                         scope.results = []; //Reset results before send
@@ -126,7 +137,7 @@ angular.module('open-autocomplete', [])
                 }
 
                 scope.resultEditButton.on('click', function () {
-                    element.removeAttr('readonly')[0].focus();
+                    element.attr('readonly', false)[0].focus();
                     return false;
                 });
 
@@ -138,15 +149,15 @@ angular.module('open-autocomplete', [])
                         }
                     }
                 });
-
+                
                 scope.$watch(function () {
                     return element.val();
                 }, function () {
-                    if (!element.is(':focus')) {
+                    if (!element.isFocus) {
                         if (element.val().length > 0) {
-                            element.attr('readonly', 'readonly');
+                            element.attr('readonly', true);
                         } else {
-                            element.removeAttr('readonly');
+                            element.attr('readonly', false);
                         }
                     }
                     if (scope.settings.onEditing) {

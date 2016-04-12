@@ -44,6 +44,12 @@
             },
             onEditing: function () {
                 $scope.isCanceled = $scope.isWarned = false;
+            },
+            onFocus: function () {
+                $scope.isCanceled = $scope.isWarned = false;
+            },
+            onError: function () {
+                console.log('Error: ' + content.message);
             }
         };
     });
